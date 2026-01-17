@@ -1,0 +1,317 @@
+/* SELECTOR UNIVERSAL */
+* {
+  margin: 0;
+  padding: 0;
+  /* box-sizing: border-box hace que el padding no "infle" el tamaño total del elemento */
+  box-sizing: border-box;
+}
+
+:root {
+  /* Variables CSS: Se usan para guardar valores y no tener que escribirlos mil veces */
+  --primary: #3b4550;
+  --primary-dark: #0a3d66;
+  --primary-hover: #0d5ba8;
+  --primary-light: #09f;
+  --background: #06182a;
+  --text-primary: #ffffff;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --border: rgba(255, 255, 255, 0.1);
+  --card-bg: #1e293b;
+  --shadow: rgba(0, 0, 0, 0.3);
+  --input-bg: #1e293b;
+  /* hsla: Color basado en Hue (tono), Saturation, Lightness y Alpha (transparencia) */
+  --hsla-example: hsla(210, 100%, 56%, 1);
+}
+
+@font-face {
+  font-family: 'Inter Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/inter:vf@latest/latin-wght-normal.woff2) format('woff2-variations');
+  /* unicode-range: Códigos que indican qué símbolos exactos (letras, flechas, etc.) descargar de la fuente */
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+body {
+  font-family: system-ui;
+  background-color: var(--background);
+  color: var(--text-primary);
+  /* 100vh: Altura del 100% de la ventana del navegador */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.6;
+}
+
+/* Títulos principales */
+h1 {
+  font-size: 1.5rem;
+  line-height: 1.2;
+  /* balance: Evita que una palabra quede sola en la última línea del título */
+  text-wrap: balance;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  /* Anidación: Esto selecciona el svg que está DENTRO del h1 */
+  svg {
+    width: 2rem;
+    height: 2rem;
+    color: var(--primary-light);
+  }
+}
+
+/* El "+" selecciona el p que está inmediatamente después del h1 */
+h1 + p {
+  text-wrap: balance;
+  margin-bottom: 2rem
+}
+
+/* Header */
+header {
+  border-bottom: 1px solid var(--border);
+  background: var(--background);
+  padding: .5rem 1rem;
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between separa el logo de la navegación a los extremos */
+  justify-content: space-between;
+  gap: 2rem;
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+}
+
+/* Navegación del header a otras páginas */
+nav {
+  align-items: center;
+  gap: 1rem;
+  display: flex;
+
+  a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    transition: color 0.2s;
+    font-weight: 500;
+
+    /* "&" representa al padre (la etiqueta "a"). Es un atajo para "a:hover" y "a:focus" */
+    &:hover, &:focus {
+      color: var(--primary);
+      /* outline: none elimina el borde azul que ponen los navegadores por defecto */
+      outline: none;
+    }
+  }
+}
+
+/* Botones del Header */
+header div a {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: #334155;
+  color: var(--text-primary);
+  display: inline-block;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* Hero */
+/* nth-child(1): Selecciona la primera sección que sea hija de main */
+main > section:nth-child(1) {
+  height: 500px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    padding-top: 36px;
+  }
+
+  /* El "&" aquí selecciona la img que está dentro de esta sección */
+  & > img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* object-fit: cover hace que la imagen llene el espacio sin deformarse */
+    object-fit: cover;
+    /* z-index: -1 coloca la imagen por detrás del texto */
+    z-index: -1;
+    left: 0;
+    right: 0;
+    /* mask-image: Crea un degradado de transparencia (de sólido a invisible) */
+    mask-image: linear-gradient(to bottom, rgba(16, 25, 34, 1) 5%, rgba(16, 25, 34, 0) 80%);
+  }
+}
+
+/* Formulario de Búsqueda */
+form {
+  max-width: 42rem;
+  width: 100%;
+  margin: 0 auto;
+  padding-inline: 1rem;
+}
+
+form > div {
+  display: flex;
+  align-items: center;
+  background-color: var(--input-bg);
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px var(--shadow);
+  padding: 0.5rem;
+  gap: 0.5rem;
+}
+
+form span {
+  padding-left: 0.75rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  /* flex-shrink: 0 impide que el icono se aplaste si falta espacio */
+  flex-shrink: 0;
+}
+
+form input[type="text"] {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  padding: 0.75rem 0.5rem;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+/* Selecciona el texto de sugerencia dentro del input */
+form input[type="text"]::placeholder {
+  color: #64748b;
+}
+
+button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  background-color: var(--primary);
+  color: white;
+  font-weight: 400;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+  font-size: 1rem;
+  white-space: nowrap;
+
+  /* Pseudo-clases (Estados) */
+  &:hover, /* Ratón encima */
+  &:focus { /* Seleccionado con el teclado (Tabulador) */
+    background-color: var(--primary-hover);
+    /* outline: Una línea externa. No ocupa espacio real en el diseño */
+    outline: 2px solid white;
+    /* outline-offset: Separa el outline del borde del botón */
+    outline-offset: 2px;
+  }
+
+  /* &:active: El momento justo en que haces clic */
+  &:active { 
+    /* transform scale: Achica el botón un poco para dar efecto de pulsado */
+    transform: scale(0.90)
+  }
+
+  /* &:disabled: Cuando el botón está bloqueado desde el HTML */
+  &:disabled {
+    opacity: .5;
+    /* pointer-events none: Hace que el botón sea invisible para el ratón (no clica) */
+    pointer-events: none;
+  }
+}
+
+/* Features Section */
+main > section:nth-child(2) {
+  padding-inline: 1rem;
+  background-color: var(--background);
+  padding-top: 2rem;
+
+  & > header {
+    gap: 2px;
+    flex-direction: column;
+
+    h2 {
+      margin-bottom: 0;
+    }
+
+    p {
+      opacity: .75;
+    }
+  }
+
+  & > div {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+}
+
+main > section:nth-child(2) h2 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+/* first-child: Selecciona el primer div dentro de la jerarquía */
+main > section:nth-child(2) > div > div:first-child > p {
+  font-size: 1.125rem;
+  color: var(--text-muted);
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+/* Grid de Features */
+main > section:nth-child(2) footer {
+  display: grid;
+  /* repeat auto-fit: Crea columnas que se ajustan solas según el tamaño de la pantalla */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px
+}
+
+/* Footer */
+footer {
+  background-color: var(--background);
+  border-top: 1px solid var(--border);
+  text-align: center;
+  padding: 16px;
+
+  small {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+  }
+}
+
+article {
+  background-color: var(--card-bg);
+  padding: 2rem;
+  margin-bottom: 16px;
+  border-radius: 0.5rem;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.5);
+
+  svg {
+    color: var(--primary-light);
+    background: rgba(0, 153, 255, .3);
+    width: 64px;
+    height: 64px;
+    border-radius: 100%;
+    padding: 16px;
+  }
+
+  p {
+    color: var(--text-muted);
+  }
+
+  h3 {
+    font-weight: 500;
+  }
+}
