@@ -33,6 +33,8 @@ class DevJobsAvatar extends HTMLElement {
     `
   }
 
+  // Es un método del ciclo de vida de los web components en JavaScript.
+  // Cuando el componente se añada al DOM, entonces llamaremos a render()
   connectedCallback() {
     this.render()
   }
