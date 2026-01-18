@@ -2,6 +2,7 @@ class DevJobsAvatar extends HTMLElement {
   constructor() {
     super(); // llamar al constructor de HTMLElement
 
+    //Abrimos el shadowDOM para mi componente.
     this.attachShadow({ mode: 'open' })
   }
 
@@ -16,6 +17,8 @@ class DevJobsAvatar extends HTMLElement {
 
     const url = this.createUrl(service, username)
 
+    // Técnica shadowDom, esto se usa para crear un "DOM Paralelo".
+    // Nos permite que los estilos de afuera no afecten a mi componente.
     this.shadowRoot.innerHTML = `
     <style>
       img {
