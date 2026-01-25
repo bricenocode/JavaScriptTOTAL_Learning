@@ -1,0 +1,13 @@
+{
+  "name": "05-typescript",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "zod": "^4.3.6"
+  }
+}
